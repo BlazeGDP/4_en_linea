@@ -2,6 +2,7 @@ import numpy as np
 
 NumeroFilas = 6
 NumeroColumnas = 7
+vacio = 0
 
 def crear_tablero():
     Tablero = np.zeros((NumeroFilas, NumeroColumnas))
@@ -20,6 +21,10 @@ def siguiente_fila(Tablero, col):
 
 def print_board(Tablero):
     print(np.flip(Tablero, 0))
+
+# consultar empate
+def tablero_lleno (Tablero):
+    return np.all(Tablero != vacio)
 
 def movimiento_ganador(Tablero, ficha):
     # Verificar las fichas horizontales para ganar
@@ -74,6 +79,10 @@ def main():
                 if movimiento_ganador(Tablero, 2):
                     print(f"felicidades {jugador_2} ganaste!")
                     fin_juego = True
+
+        if tablero_lleno(Tablero):
+            print("Han empatado")
+            fin_juego = True
 
 
         print_board(Tablero)
