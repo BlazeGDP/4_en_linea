@@ -50,8 +50,18 @@ def movimiento_ganador(Tablero, ficha):
         for r in range(3, NumeroFilas):
             if Tablero[r][c] == ficha and Tablero[r-1][c+1] == ficha and Tablero[r-2][c+2] == ficha and Tablero[r-3][c+3] == ficha:
                 return True
+def reiniciar_juego():
+    while True:
+        respuesta = input("¿Quieres jugar de nuevo? (S/N)").lower()
+        if respuesta == "s":
+            return True
+        elif respuesta == "n":
+            return False
+        else:
+            print("respuesta no valida, porfavor solo ingresar: 'S' o 'N'.")
 
 def main():
+    print("bienvenidos al 4enlinea creado por el mejor equipo de procesos de negocios")
     Tablero = crear_tablero()
     fin_juego = False
     turn = 0
@@ -89,7 +99,12 @@ def main():
         turn += 1
         turn = turn % 2
 
-    print("Fin del Juego")
+    if reiniciar_juego():
+        main()
+    else:
+        print("Fin del Juego")
+
+
 
 if __name__ == '__main__':
     main()
